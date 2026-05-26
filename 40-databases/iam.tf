@@ -29,6 +29,9 @@ resource "aws_iam_policy" "mysql" {
   name      = local.mysql_policy_name
   description = "A policy for MySQL Ec2 instance"
   policy = data.aws_iam_policy_document.s3_read_only.json
+  /* policy = templatefile("mysql-iam-policy.json", {
+            environment = var.environment
+}) */
 }
 
 resource "aws_iam_role_policy_attachment" "mysql" {
