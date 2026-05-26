@@ -12,7 +12,7 @@ resource "aws_instance" "mongodb" {
   )
 }
 
-resource "terraform_data" "bootstrap" {
+resource "terraform_data" "mongodb" {
   triggers_replace = [
     aws_instance.mongodb.id
   ]
@@ -93,7 +93,7 @@ resource "aws_instance" "mysql" {
   )
 }
 
-resource "terraform_data" "bootstrap_mysql" {
+resource "terraform_data" "mysql" {
   triggers_replace = [
     aws_instance.mysql.id
   ]
