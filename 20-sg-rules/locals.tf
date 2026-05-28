@@ -7,5 +7,5 @@ locals {
   rabbitmq_sg_id = data.aws_ssm_parameter.rabbitmq_sg_id.value
   catalouge_sg_id = data.aws_ssm_parameter.catalouge_sg_id.value
   user_sg_id = data.aws_ssm_parameter.user_sg_id.value
-  
+  backend_alb_sg_id = data.aws_ssm_parameter.backend_alb_sg_id.value
 }
