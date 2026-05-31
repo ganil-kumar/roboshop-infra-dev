@@ -1,0 +1,30 @@
+locals {
+  ami_id =  data.aws_ami.joindevops.id
+  vpc_id = data.aws_ssm_parameter.vpc_id.value
+  catalogue_sg_id = data.aws_ssm_parameter.catalogue_sg_id.value
+  private_subnet_id = split(",", data.aws_ssm_parameter.private_subnet_ids.value)[0]
+  backend_alb_listener_arn = data.aws_ssm_parameter.backend_alb_listener_arn.value
+  common_tags = {
+        Project = var.project
+        Environment = var.environment
+        Terraform = "true"
+    }  
+}
+
+resource "aws_lb_listener_rule" "catalogue" {
+  listener_arn = local.backend_alb_listener_arn
+  priority     = 10
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.catalogue.arn
+  }
+
+  condition {
+    host_header {
+      values = ["catalogue.backend-alb-${var.environment}.${var.domain_name}"]
+    }
+  }
+}
+
+
