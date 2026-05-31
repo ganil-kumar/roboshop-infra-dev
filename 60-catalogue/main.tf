@@ -39,7 +39,7 @@ resource "terraform_data" "catalogue" {
 }
 
 resource "aws_ec2_instance_state" "catalogue" {
-  instance_id = aws_instance.my_instance.id
+  instance_id = aws_instance.catalogue.id
   state       = "stopped" # Change to "running" to start it back up
   depends_on = [ terraform_data.catalogue ]
 }
@@ -168,6 +168,7 @@ resource "aws_autoscaling_policy" "catalogue" {
   name                   = "${var.project}-${var.environment}-catalogue"
   policy_type            = "TargetTrackingScaling"
 
+  estimated_instance_warmup = 120
   target_tracking_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ASGAverageCPUUtilization"
