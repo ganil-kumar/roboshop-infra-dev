@@ -12,7 +12,7 @@ variable "sg_names" {
       # Databases
       "mongodb", "redis", "mysql", "rabbitmq",
       # Backend
-      "catalouge", "user", "cart", "shipping", "payment",
+      "catalogue", "user", "cart", "shipping", "payment",
       # Backend ALB
       "backend_alb",
       # Frontend
