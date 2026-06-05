@@ -13,3 +13,7 @@ variable "zone_id" {
 variable "domain_name" {
     default = "akviklabs.online"
 }
+
+variable "app_varsion" {
+    default = "v3" 
+}
