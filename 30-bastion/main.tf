@@ -11,7 +11,7 @@ resource "aws_instance" "bastion" {
     # EBS volume tags
     tags = merge(
      {
-         Name = "${var.project_name}-${var.environment}-bastion"
+         Name = "${var.project}-${var.environment}-bastion"
      },
     local.common_tags
     )
@@ -19,7 +19,7 @@ resource "aws_instance" "bastion" {
   
  tags = merge(
     {
-        Name = "${var.project_name}-${var.environment}-bastion"
+        Name = "${var.project}-${var.environment}-bastion"
     },
     local.common_tags
   )
@@ -59,7 +59,7 @@ resource "aws_iam_role_policy_attachment" "bastion" {
 
 # Create the instance profile
 resource "aws_iam_instance_profile" "bastion" {
-  name = "${var.project_name}-${var.environment}-bastion"
+  name = "${var.project}-${var.environment}-bastion"
   role = aws_iam_role.bastion.name
 }
 
